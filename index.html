@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html ng-app>
+	<head>
+		<meta charset="iso-8859-1">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Controle Financeiro - Teste Via Varejo</title>
+		  <script src="js/angular.js"></script>     
+		  <script src="js/script.js"></script>     
+		  <script src="js/mask.js"></script> 
+		  <link rel="stylesheet" href="css/style.css">    
+		</head>
+	<body class="center">
+		<div class="main" ng-controller="ControleTransacaoController">			
+			<div class="header">
+				<h1>Controle Financeiro</h1>
+				<div class="sidebar">
+					<ul id="menu" style=" list-style-type: none;">
+						<li style="padding:0 18px 0 18px;border-right:1px solid black;">Resumo</li>
+						<li style="padding:0 18px 0 18px;border-right:1px solid black;">Dashboard</li>
+						<li style="padding:0 0 0 18px;">Configurações</li>
+					</ul>
+				</div>
+			</div>				
+			<div class="content">
+				<div class="formulario">					
+						<form>
+							<h2 style="text-align:center;">Nova Transação</h2>
+							<div class="Inputgroup">
+								<label>Tipo Transação</label><br  />					
+								<select  ng-model="form.transacao.tipoTransacao">
+									<option ng-value="0">Compra</option>
+									<option ng-value="1">Venda</option>
+								</select>
+							</div>
+							<div class="Inputgroup">
+								<label>Mercadoria</label><br  />					
+								<input type="text" ng-model="form.transacao.nomeMercadoria">
+							</div>
+							<div class="Inputgroup">
+								<label>Valor</label><br  />					
+								<input type="text" ng-model="form.transacao.valor">
+							</div>
+							<div class="Inputgroup">										
+								<button ng-click="salvar()">Adicionar Transação</button>
+							</div>
+						</form>
+				</div>
+				<div class="lista">
+					<h2>Extrato de transações</h2>
+					<table cellpadding = "6" class = "gridview">
+						<tr>
+							<th class="sinal">&nbsp;</th>
+							<th class="mercadoria" >Mercadoria</th>
+							<th>Valor</th>
+						</tr>
+						<tr ng-repeat="item in transacao.list">
+							<td>{{item.sinal}}</td>
+							<td>{{item.nomeMercadoria}}</td>
+							<td>{{item.valor}}</td>
+						</tr>
+						<tr style="border-top:1px solid black;">
+								<th></th>
+							<th>Total</th>
+							<th class="valor">{{getValorTotal()}} [{{form.posicao}}]</th>
+						</tr>
+					</table>
+				</div>				
+			</div>				
+		</div>
+	</body>
+</html>
